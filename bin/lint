@@ -1,0 +1,55 @@
+#!/usr/bin/env python3
+# This file is placed in the Public Domain.
+
+
+"lintify"
+
+
+import os
+
+
+os.environ["PYTHONPATH"] = "."
+
+
+SKIP = [
+        "---",
+        "===",
+        "Your code",
+        "rtfd",
+        "wipe",
+        "env",
+        "upenv",
+        "gcidctl"
+       ]
+
+
+TXT = 'pylint -d C0115,C0116 %s'
+
+
+def doskip(txt):
+    for name in SKIP:
+        if name in txt:
+            return True
+    return False
+
+
+def payload(dname):
+    for fnm in os.listdir(dname):
+        if fnm.endswith("~"):
+            continue
+        fnn = "%s/%s" % (dname, fnm)
+        for line in os.popen(TXT % fnn).readlines():
+            if not line or doskip(line):
+                continue
+            liner = line.strip()
+            if liner:
+                print(liner)
+
+
+def main():
+    payload("gcid")
+    payload("test")
+    payload("bin")
+
+
+main()

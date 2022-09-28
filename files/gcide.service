@@ -1,0 +1,14 @@
+[Unit]
+Description=GCIDE - Prosecutor. Court. Reconsider OTP-CR-117/19.
+After=multi-user.target
+
+[Service]
+DynamicUser=True
+StateDirectory=gcide
+LogsDirectory=gcide
+CacheDirectory=gcide
+ExecStart=/usr/local/bin/gcidesrv
+CapabilityBoundingSet=CAP_NET_RAW
+
+[Install]
+WantedBy=multi-user.target
