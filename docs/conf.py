@@ -36,6 +36,7 @@ today_fmt = '%B %d, %Y'
 needs_sphinx='1.7'
 exclude_patterns = ['_build', '_templates', '_source', 'Thumbs.db', '.DS_Store']
 source_suffix = '.rst'
+source_encoding = ''
 #source_encoding = 'utf-8-sig'
 modindex_common_prefix = [""]
 keep_warnings = False
@@ -58,10 +59,10 @@ extensions=[
 
 
 html_title = "Prosecutor. Court. Reconsider OTP-CR-117/19."
-html_style = 'genocide.css'
+html_style = 'gcide.css'
 html_static_path = ["_static"]
-html_css_files = ["genocide.css",]
-html_short_title = "GENOCIDE %s" % __version__
+html_css_files = ["gcide.css",]
+html_short_title = "GCIDE %s" % __version__
 html_sidebars = {
     '**': [
         'about.html',
@@ -72,7 +73,7 @@ html_sidebars = {
 }
 html_theme = "alabaster"
 html_theme_options = {
-    'github_user': 'bthate',
+    'github_user': 'operbot',
     'github_repo': __name__,
     'github_button': False,
     'github_banner': False,
@@ -98,7 +99,6 @@ html_copy_source = False
 html_use_opensearch = 'http://%s.rtfd.io/' % __name__
 html_file_suffix = '.html'
 htmlhelp_basename = 'testdoc'
-
 intersphinx_mapping = {
                        'python': ('https://docs.python.org/3', 'objects.inv'),
                        'sphinx': ('http://sphinx.pocoo.org/', None),
