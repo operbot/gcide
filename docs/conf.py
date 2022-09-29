@@ -6,8 +6,8 @@
 "Prosecutor. Court. Reconsider OTP-CR-117/19."
 
 
-__name__ = "gcid"
-__version__ = "113"
+__name__ = "gcide"
+__version__ = "1"
 
 
 import doctest
