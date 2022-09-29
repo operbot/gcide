@@ -17,7 +17,7 @@ import _thread
 
 
 from . import Callbacks, Class, Client, Default, Event, Object
-from . import edit, elapsed, keys, printable, save, update
+from . import elapsed, printable
 from . import find, fntime, locked, last, launch
 
 
@@ -585,7 +585,7 @@ class Users(Object):
         for user in Users.get_users(origin):
             try:
                 user.perms.remove(perm)
-                save(user)
+                user.save()
                 res = True
             except ValueError:
                 pass
@@ -611,7 +611,7 @@ class Users(Object):
             raise NoUser(origin)
         if permission.upper() not in user.perms:
             user.perms.append(permission.upper())
-            save(user)
+            user.save()
         return user
 
 
@@ -621,12 +621,12 @@ def cfg(event):
     if not event.sets:
         event.reply(printable(
                               config,
-                              keys(config),
+                              config.keys(),
                               skip="control,password,realname,sleep,username")
                              )
     else:
-        edit(config, event.sets)
-        save(config)
+        config.edit(event.sets)
+        config.save()
         event.reply("ok")
 
 
@@ -637,7 +637,7 @@ def dlt(event):
     selector = {"user": event.args[0]}
     for _fn, obj in find("user", selector):
         obj.__deleted__ = True
-        save(obj)
+        obj.save()
         event.reply("ok")
         break
 
@@ -657,7 +657,7 @@ def met(event):
     user = User()
     user.user = event.rest
     user.perms = ["USER"]
-    save(user)
+    user.save()
     event.reply("ok")
 
 

@@ -10,9 +10,8 @@ import os
 import unittest
 
 
-from gcide import Object, get, items, keys, register, update, values
-from gcide import load, otype, save
-from gcide import edit, printable
+from gcide import Object, loads, dumps
+from gcide import printable
 from gcide import ObjectDecoder, ObjectEncoder
 from gcide import Wd
 
@@ -29,29 +28,28 @@ attrs1 = (
          'clear',
          'copy',
          'fromkeys',
-         'get',
          'items',
          'keys',
          'matchkey',
          'pop',
          'popitem',
-         "register",
-         'save',
          'setdefault',
          'update',
-         'values',
         )
 
 attrs2 = (
           '__class__',
           '__delattr__',
+          '__delitem__',
           '__dict__',
           '__dir__',
           '__doc__',
           '__eq__',
           '__format__',
           '__ge__',
+          '__getattr__',
           '__getattribute__',
+          '__getitem__',
           '__gt__',
           '__hash__',
           '__init__',
@@ -60,6 +58,7 @@ attrs2 = (
           '__le__',
           '__len__',
           '__lt__',
+          '__methods__',
           '__module__',
           '__ne__',
           '__new__',
@@ -67,11 +66,23 @@ attrs2 = (
           '__reduce_ex__',
           '__repr__',
           '__setattr__',
+          '__setitem__',
           '__sizeof__',
           '__str__',
           '__subclasshook__',
-          '__weakref__'
-         )
+          '__weakref__',
+          'delete',
+          'edit',
+          'get',
+          'items',
+          'keys',
+          'load',
+          'register',
+          'save',
+          'type',
+          'update',
+          'values'
+         ) 
 
 
 def dumps(name):
@@ -153,12 +164,11 @@ class TestObject(unittest.TestCase):
     def test_module(self):
         self.assertTrue(Object().__module__, "op")
 
-    def test_otype(self):
-        self.assertEqual(otype(Object()), "gcide.obj.Object")
+    def test_type(self):
+        self.assertEqual(Object().type(), "gcide.obj.Object")
 
     def test_repr(self):
-        self.assertTrue(update(Object(),
-                               {"key": "value"}).__repr__(), {"key": "value"})
+        self.assertTrue(Object().update({"key": "value"}).__repr__(), {"key": "value"})
 
     def test_setattr(self):
         obj = Object()
@@ -175,7 +185,7 @@ class TestObject(unittest.TestCase):
     def test_edit(self):
         obj = Object()
         dta = {"key": "value"}
-        edit(obj, dta)
+        obj.edit(dta)
         self.assertEqual(obj.key, "value")
 
     def test_printable(self):
@@ -185,13 +195,13 @@ class TestObject(unittest.TestCase):
     def test_get(self):
         obj = Object()
         obj.key = "value"
-        self.assertEqual(get(obj, "key"), "value")
+        self.assertEqual(obj.get("key"), "value")
 
     def test_keys(self):
         obj = Object()
         obj.key = "value"
         self.assertEqual(
-            list(keys(obj)),
+            list(obj.keys()),
             [
                 "key",
             ],
@@ -201,7 +211,7 @@ class TestObject(unittest.TestCase):
         obj = Object()
         obj.key = "value"
         self.assertEqual(
-            list(items(obj)),
+            list(obj.items()),
             [
                 ("key", "value"),
             ],
@@ -218,38 +228,37 @@ class TestObject(unittest.TestCase):
         obj.test = "bla"
         self.assertEqual(dumps(obj), VALIDJSON)
 
-
     def test_load(self):
         obj = Object()
         obj.key = "value"
-        pld = save(obj)
+        pld = obj.save()
         oobj = Object()
-        load(oobj, pld)
+        oobj.load(pld)
         self.assertEqual(oobj.key, "value")
 
     def test_register(self):
         obj = Object()
-        register(obj, "key", "value")
+        obj.register("key", "value")
         self.assertEqual(obj.key, "value")
 
     def test_save(self):
         Wd.workdir = ".test"
         obj = Object()
-        path = save(obj)
+        path = obj.save()
         self.assertTrue(os.path.exists(os.path.join(Wd.workdir, "store", path)))
 
     def test_update(self):
         obj = Object()
         obj.key = "value"
         oobj = Object()
-        update(oobj, obj)
+        oobj.update(obj)
         self.assertTrue(oobj.key, "value")
 
     def test_values(self):
         obj = Object()
         obj.key = "value"
         self.assertEqual(
-            list(values(obj)),
+            list(obj.values()),
             [
                 "value",
             ],

@@ -9,7 +9,7 @@ import sys
 import unittest
 
 
-from gcide import Client, Command, Object, get
+from gcide import Client, Command, Object
 from gcide.run import Cfg, docmd
 
 
@@ -28,8 +28,6 @@ param.thr = [""]
 
 
 class CLI(Client):
-
-    "test cli class"
 
     @staticmethod
     def raw(txt):
@@ -57,14 +55,12 @@ def consume(events):
 
 class TestCommands(unittest.TestCase):
 
-    "commands test class."
-
     def test_commands(self):
         cmds = sorted(Command.cmd)
         for cmd in cmds:
             if cmd in skip:
                 continue
-            for ex in get(param, cmd, ""):
+            for ex in param.get(cmd, ""):
                 evt = docmd(cli, cmd + " " + ex)
                 evts.append(evt)
         consume(evts)

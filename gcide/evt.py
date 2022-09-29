@@ -9,7 +9,6 @@ import threading
 
 from .bus import Bus
 from .dft import Default
-from .obj import update
 from .prs import parse
 
 
@@ -33,7 +32,7 @@ class Event(Default):
 
     def parse(self):
         if self.txt:
-            update(self, parse(self.txt))
+            self.update(parse(self.txt))
 
     def ready(self):
         self._ready.set()

@@ -72,7 +72,6 @@ from .utl import wait
 from .cls import Class
 from .dbs import Db, all, find, fns, fntime, hook, last, locked
 from .dft import Default
-from .jsn import ObjectDecoder, ObjectEncoder, dump, dumps, load, loads, save
 from .obj import *
 from .utl import cdir, elapsed, spl
 from .wdr import Wd

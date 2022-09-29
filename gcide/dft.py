@@ -15,14 +15,11 @@ def __dir__():
 
 class Default(Object):
 
-    __slots__ = ("__default__",)
-
-    def __init__(self, *args, **kwargs):
-        Object.__init__(self, *args, **kwargs)
-        self.__default__ = ""
-
+    __default__ = ""
+    
     def __getattr__(self, key):
-        val = self.__dict__.get(key, None)
-        if val:
-            return val
-        return self.__default__
+        try:
+            self[key] = Object.__getattr__(self, key)
+        except AttributeError:
+            self[key] = Default.__default__
+        return self[key]

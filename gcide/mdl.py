@@ -8,7 +8,7 @@
 import time
 
 
-from . import Object, elapsed, get, keys
+from . import Object, elapsed
 from . import Bus, Event, Repeater, launch
 
 
@@ -19,8 +19,8 @@ def __dir__():
 
 
 def init():
-    for key in keys(oorzaken):
-        val = get(oorzaken, key, None)
+    for key in oorzaken.keys():
+        val = oorzaken.get(key, None)
         if val and int(val) > 10000:
             evt = Event()
             evt.txt = ""
@@ -269,7 +269,7 @@ oorzaken = Object()
 
 def boot():
     _nr = -1
-    for key in keys(oorzaak):
+    for key in oorzaak.keys():
         _nr += 1
         if _nr == 0:
             continue
@@ -325,9 +325,9 @@ def seconds(nrs):
 
 
 def getnr(name):
-    for k in keys(oorzaken):
+    for k in oorzaken.keys():
         if name.lower() in k.lower():
-            return int(get(oorzaken, k))
+            return int(oorzaken.get(k))
     return 0
 
 

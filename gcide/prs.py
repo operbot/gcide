@@ -5,7 +5,6 @@
 
 
 from .dft import Default
-from .obj import register
 
 
 def __dir__():
@@ -26,7 +25,7 @@ class Parsed(Default):
         self.txt = ""
 
     def default(self, key, default=""):
-        register(self, key, default)
+        self.register(key, default)
 
     def parse(self, txt):
         self.otxt = txt or self.txt
@@ -44,14 +43,14 @@ class Parsed(Default):
                 key, value = word.split("==")
                 if value.endswith("-"):
                     value = value[:-1]
-                    register(self.toskip, value, "")
-                register(self.gets, key, value)
+                    self.toskip.register(value, "")
+                self.gets.register(key, value)
                 continue
             except ValueError:
                 pass
             try:
                 key, value = word.split("=")
-                register(self.sets, key, value)
+                self.sets.register(key, value)
                 continue
             except ValueError:
                 pass

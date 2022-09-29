@@ -9,8 +9,8 @@ import time
 
 
 from . import Bus, Command, Object
-from . import elapsed, get, name, printable, update
-from . import find, fntime, save
+from . import elapsed, name, printable
+from . import find, fntime
 from .run import starttime
 
 def __dir__():
@@ -50,7 +50,7 @@ def dne(event):
     selector = {"txt": event.args[0]}
     for _fn, obj in find("todo", selector):
         obj.__deleted__ = True
-        save(obj)
+        obj.save()
         event.reply("ok")
         break
 
@@ -78,7 +78,7 @@ def log(event):
         return
     obj = Log()
     obj.txt = event.rest
-    save(obj)
+    obj.save()
     event.reply("ok")
 
 
@@ -107,7 +107,7 @@ def tdo(event):
         return
     obj = Todo()
     obj.txt = event.rest
-    save(obj)
+    obj.save()
     event.reply("ok")
 
 
@@ -117,8 +117,8 @@ def thr(event):
         if str(thread).startswith("<_"):
             continue
         obj = Object()
-        update(obj, vars(thread))
-        if get(obj, "sleep", None):
+        obj.update(vars(thread))
+        if obj.get("sleep", None):
             uptime = obj.sleep - int(time.time() - obj.state.latest)
         else:
             uptime = int(time.time() - obj.starttime)

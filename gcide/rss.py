@@ -17,8 +17,8 @@ from urllib.request import Request, urlopen
 
 
 from . import Bus, Class, Db, Default, Object, Repeater
-from . import find, fntime, last, launch, save
-from . import edit, elapsed, get, register, spl, update
+from . import find, fntime, last, launch
+from . import elapsed, spl
 from .run import Cfg
 
 
@@ -86,7 +86,7 @@ class Fetcher(Object):
         for key in spl(displaylist):
             if not key:
                 continue
-            data = get(obj, key, None)
+            data = obj.get(key, None)
             if not data:
                 continue
             data = data.replace("\n", " ")
@@ -101,8 +101,8 @@ class Fetcher(Object):
         objs = []
         for obj in reversed(list(getfeed(feed.rss, feed.display_list))):
             fed = Feed()
-            update(fed, obj)
-            update(fed, feed)
+            fed.update(obj)
+            fed.update(feed)
             if "link" in fed:
                 url = urllib.parse.urlparse(fed.link)
                 if url.path and not url.path == "/":
@@ -114,12 +114,12 @@ class Fetcher(Object):
                 Fetcher.seen.urls.append(uurl)
             counter += 1
             if self.dosave:
-                save(fed)
+                 fed.save()
             objs.append(fed)
         if objs:
-            save(Fetcher.seen)
+            Fetcher.seen.save()
         txt = ""
-        name = get(feed, "name")
+        name = feed.get("name")
         if name:
             txt = "[%s] " % name
         for obj in objs:
@@ -166,7 +166,7 @@ class Parser(Object):
             line = line.strip()
             obj = Object()
             for item in spl(items):
-                register(obj, item, Parser.getitem(line, item))
+                obj.register(item, Parser.getitem(line, item))
             res.append(obj)
         return res
 
@@ -234,8 +234,8 @@ def dpl(event):
         db = Db()
         _fn, feed = db.match(names[0], {"rss": event.args[0]})
         if feed:
-            edit(feed, setter)
-            save(feed)
+            feed.edit(setter)
+            feed.save()
             event.reply("ok")
 
 
@@ -267,7 +267,7 @@ def nme(event):
         feed.name = event.args[1]
         got.append(feed)
     for feed in got:
-        save(feed)
+        feed.save()
     event.reply("ok")
 
 
@@ -281,7 +281,7 @@ def rem(event):
         feed.__deleted__ = True
         got.append(feed)
     for feed in got:
-        save(feed)
+        feed.save()
     event.reply("ok")
 
 
@@ -307,5 +307,5 @@ def rss(event):
         return
     feed = Rss()
     feed.rss = event.args[0]
-    save(feed)
+    feed.save()
     event.reply("ok")
