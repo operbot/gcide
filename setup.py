@@ -45,7 +45,7 @@ setup(
                 ("share/doc/gcide/_static/", uploadlist("docs/_static")),
                 ("share/doc/gcide/_templates/", uploadlist("docs/_templates")),
                ],
-    scripts=["bin/gcide", "bin/gcidecmd", "bin/gcidectl", "bin/gcided"],
+    scripts=["bin/gcide", "bin/gcidecmd", "bin/gcidectl", "bin/gcidesrv"],
     classifiers=['Development Status :: 3 - Alpha',
                  'License :: Public Domain',
                  'Operating System :: Unix',
