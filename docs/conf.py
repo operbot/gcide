@@ -5,7 +5,6 @@
 "Prosecutor. Court. Reconsider OTP-CR-117/19."
 
 
-__name__ = "gcide"
 __version__ = "1"
 
 
@@ -26,7 +25,7 @@ sys.path.insert(0, os.path.join(curdir, "..", ".."))
 # -- Options for GENERIC output ---------------------------------------------
 
 
-project = __name__
+project = "gcide"
 master_doc = 'index'
 version = '%s' % __version__
 release = '%s' % __version__
@@ -73,7 +72,7 @@ html_sidebars = {
 html_theme = "alabaster"
 html_theme_options = {
     'github_user': 'operbot',
-    'github_repo': __name__,
+    'github_repo': "gcide",
     'github_button': False,
     'github_banner': False,
     'logo': 'skull.jpg',
@@ -95,7 +94,7 @@ html_show_sourcelink = False
 html_show_sphinx = False
 html_show_copyright = False
 html_copy_source = False
-html_use_opensearch = 'http://%s.rtfd.io/' % __name__
+html_use_opensearch = 'http://gcide.rtfd.io/'
 html_file_suffix = '.html'
 htmlhelp_basename = 'testdoc'
 intersphinx_mapping = {
