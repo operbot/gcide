@@ -69,13 +69,11 @@ attrs2 = (
           '__str__',
           '__subclasshook__',
           '__weakref__',
-          'delete',
           'edit',
           'get',
           'items',
           'keys',
           'load',
-          'register',
           'save',
           'type',
           'update',
@@ -225,11 +223,6 @@ class TestObject(unittest.TestCase):
         oobj = Object()
         oobj.load(pld)
         self.assertEqual(oobj.key, "value")
-
-    def test_register(self):
-        obj = Object()
-        obj.register("key", "value")
-        self.assertEqual(obj.key, "value")
 
     def test_save(self):
         Wd.workdir = ".test"

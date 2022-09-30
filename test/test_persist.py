@@ -15,5 +15,7 @@ class TestPersist(unittest.TestCase):
 
     def test_methodoverwrite(self):
         obj = Object()
-        print(dir(obj))
+        obj.a = "b"
+        obj.get = ""
+        self.assertTrue(obj.get("a"), "b")
         

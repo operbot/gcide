@@ -78,7 +78,7 @@ class Object:
 
     def edit(self, setter):
         for key, value in setter.items():
-            self.register(key, value)
+            self[key] =  value
 
     def get(self, key, default=None):
         return self.__dict__.get(key, default)
