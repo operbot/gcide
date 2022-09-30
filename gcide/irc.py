@@ -1,4 +1,5 @@
 # This file is placed in the Public Domain.
+# pylint: disable=R0902,R0904,R0912,R0915
 
 
 "internet relay chat"
@@ -129,10 +130,10 @@ class Output(Object):
             self.cache[channel] = []
         self.cache[channel].extend(txtlist)
 
-    def get(self, channel):
+    def get(self, key, default=None):
         value = None
         try:
-            value = self.cache[channel].pop(0)
+            value = self.cache[key].pop(0)
         except IndexError:
             pass
         return value
@@ -562,7 +563,7 @@ class User(Object):
         self.user = ""
         self.perms = []
         if val:
-            update(self, val)
+            self.update(val)
 
 
 Class.add(User)

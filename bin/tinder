@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# pylint: disable=E1101,C0116
+# pylint: disable=E1101,C0116,W0613
 # This file is placed in the Public Domain.
 
 
@@ -16,21 +16,13 @@ import traceback
 import _thread
 
 
-sys.path.insert(0, os.getcwd())
+from gcide import Client, Command, Event, Object, Wd
+from gcide import launch, parse, scan
+from gcide import elapsed, name, locked
+from gcide.run import Cfg
 
 
-
-from gcid.obj import Object, get
-from gcid.hdl import Client, Commands, Event
-from gcid.hdl import launch, parse, scan
-from gcid.run import Cfg
-from gcid.tmr import elapsed
-from gcid.thr import getname
-from gcid.utl import locked
-from gcid.wdr import Wd
-
-
-from gcid import bsc, fnd, irc, log, rss
+from gcide import cmd, irc, rss
 
 
 paylock = _thread.allocate_lock()
@@ -40,10 +32,8 @@ Wd.workdir = ".test"
 Cfg.debug = True
 
 
-scan(bsc)
-scan(fnd)
+scan(cmd)
 scan(irc)
-scan(log)
 scan(rss)
 
 
@@ -102,19 +92,19 @@ def from_exception(ex, txt="", sep=" "):
     result = []
     for frm in traceback.extract_tb(ex.__traceback__):
         result.append("%s:%s" % (os.sep.join(frm.filename.split(os.sep)[-2:]), frm.lineno))
-    return "%s(%s) %s" % (getname(ex), ex, " ".join(result))
+    return "%s(%s) %s" % (name(ex), ex, " ".join(result))
 
 
 
 @locked(paylock)
 def payload(clt):
-    cmds = sorted(Commands.cmd)
+    cmds = sorted(Command.cmd)
     random.shuffle(cmds)
     _nr = 0
-    for cmd in cmds:
-        for ex in get(param, cmd, [""]):
+    for cmnd in cmds:
+        for ex in param.get(cmnd, [""]):
             evt = Event()
-            evt.txt = cmd + " " + ex
+            evt.txt = cmnd + " " + ex
             evt.orig = repr(clt)
             evt.parse()
             clt.handle(evt)
@@ -152,7 +142,7 @@ def main():
         for thr in thrs:
             res += thr.join()
     else:
-        res = nrs * len(Commands.cmd)
+        res = nrs * len(Command.cmd)
     consume(events)
     endtime = time.time()
     print("%s %s %s (%s remaining)" %  (

@@ -7,16 +7,14 @@
 import time
 
 
+from .cfg import Config
+from .evt import Event
+
+
 starttime = time.time()
 
 
-from .cfg import Config
-
-
 Cfg = Config()
-
-
-from .evt import Event
 
 
 def docmd(clt, txt):

@@ -16,7 +16,7 @@ def __dir__():
 class Default(Object):
 
     __default__ = ""
-    
+
     def __getattr__(self, key):
         try:
             self[key] = Object.__getattr__(self, key)

@@ -1,4 +1,5 @@
 # This file is placed in the Public Domain.
+# pylint: disable=W0613
 
 
 "object"
@@ -31,17 +32,6 @@ def __dir__():
            )
 
 
-
-
-
-from .cls import Class
-
-
-def __dir__():
-    return (
-           )
-
-
 class Object:
 
 
@@ -65,8 +55,8 @@ class Object:
             return self.__dict__.get(key)
         raise AttributeError(key)
 
-    def __getitem__(self, k):
-        return self.__dict__.__getitem__(k)
+    def __getitem__(self, key):
+        return self.__dict__.__getitem__(key)
 
     def __iter__(self):
         return iter(self.__dict__)
@@ -80,14 +70,11 @@ class Object:
         else:
             self.__dict__[key] = value
 
-    def __setitem__(self, k, v):
-        return self.__dict__.__setitem__(k, v)
+    def __setitem__(self, key, value):
+        return self.__dict__.__setitem__(key, value)
 
     def __str__(self):
         return str(self. __dict__)
-
-    def delete(self, key):
-        delattr(self, key)
 
     def edit(self, setter):
         for key, value in setter.items():
@@ -110,11 +97,8 @@ class Object:
         lpath = os.path.join(Wd.workdir, "store", stp)
         if os.path.exists(lpath):
             with open(lpath, "r", encoding="utf-8") as ofile:
-                 res = json.load(ofile, cls=ObjectDecoder)
-                 self.update(res)
-
-    def register(self, key, value):
-        setattr(self, key, value)
+                res = json.load(ofile, cls=ObjectDecoder)
+                self.update(res)
 
     def save(self):
         stp = os.path.join(

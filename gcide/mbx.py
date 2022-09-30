@@ -1,4 +1,5 @@
 # This file is placed in the Public Domain.
+# pylint: disable=W0212
 
 
 "mailbox"
@@ -10,7 +11,7 @@ import time
 
 
 from . import Class, Db, Object
-from . import elapsed, find, fntime, printable, save, update
+from . import elapsed, find, fntime, printable
 
 
 def __dir__():
@@ -155,13 +156,13 @@ def mbx(event):
         pass
     for _em in thing:
         email = Email()
-        update(email, _em._headers)
+        email.update(_em._headers)
         email.text = ""
         for payload in _em.walk():
             if payload.get_content_type() == 'text/plain':
                 email.text += payload.get_payload()
         email.text = email.text.replace("\\n", "\n")
-        save(email)
+        email.save()
         _nr += 1
     if _nr:
         event.reply("ok %s" % _nr)

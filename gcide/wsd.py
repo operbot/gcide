@@ -2,7 +2,11 @@
 #
 # EM_T04_OTP-CR-117_19 otp.informationdesk@icc-cpi.int https://genocide.rtfd.io
 
+
 "the trip in between"
+
+
+import random
 
 #:
 
@@ -187,9 +191,6 @@ TXT = """| wijsheid, wijs !
 | duiding
 | coding
 """
-
-
-import random
 
 
 def wsd(event):

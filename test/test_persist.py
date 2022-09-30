@@ -1,6 +1,9 @@
 # This file is placed in the Public Domain.
 
 
+"test persistence"
+
+
 import unittest
 
 
@@ -11,6 +14,6 @@ class TestPersist(unittest.TestCase):
 
 
     def test_methodoverwrite(self):
-        o = Object()
-        print(dir(o))
+        obj = Object()
+        print(dir(obj))
         

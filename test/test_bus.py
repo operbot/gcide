@@ -16,7 +16,7 @@ class MyClient(Client):
         Client.__init__(self)
         self.gotcha = False
         self.orig = repr(self)
-        
+
     def raw(self, txt):
         self.gotcha = True
 

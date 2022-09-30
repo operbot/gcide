@@ -33,7 +33,3 @@ class Callbacks(Object):
     @staticmethod
     def dispatch(event):
         Callbacks.callback(event)
-
-    @staticmethod
-    def get(typ):
-        return Callbacks.cbs.get(typ)

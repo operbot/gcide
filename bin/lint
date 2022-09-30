@@ -19,7 +19,7 @@ SKIP = [
         "wipe",
         "env",
         "upenv",
-        "gcidctl"
+        "gcidectl"
        ]
 
 
@@ -47,7 +47,7 @@ def payload(dname):
 
 
 def main():
-    payload("gcid")
+    payload("gcide")
     payload("test")
     payload("bin")
 

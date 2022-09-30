@@ -114,7 +114,7 @@ class Fetcher(Object):
                 Fetcher.seen.urls.append(uurl)
             counter += 1
             if self.dosave:
-                 fed.save()
+                fed.save()
             objs.append(fed)
         if objs:
             Fetcher.seen.save()
@@ -231,8 +231,8 @@ def dpl(event):
     setter = {"display_list": event.args[1]}
     names = Class.full("rss")
     if names:
-        db = Db()
-        _fn, feed = db.match(names[0], {"rss": event.args[0]})
+        dbs = Db()
+        _fn, feed = dbs.match(names[0], {"rss": event.args[0]})
         if feed:
             feed.edit(setter)
             feed.save()

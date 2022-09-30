@@ -1,18 +1,16 @@
-# pylint: disable=E1101,C0116,C0411
+# pylint: disable=E1101,C0116,C0411,R0904
 # This file is placed in the Public Domain.
 
 
 "object"
 
 
-import json
 import os
 import unittest
 
 
 from gcide import Object, loads, dumps
 from gcide import printable
-from gcide import ObjectDecoder, ObjectEncoder
 from gcide import Wd
 
 
@@ -82,15 +80,7 @@ attrs2 = (
           'type',
           'update',
           'values'
-         ) 
-
-
-def dumps(name):
-    return json.dumps(name, cls=ObjectEncoder)
-
-
-def loads(name):
-    return json.loads(name, cls=ObjectDecoder)
+         )
 
 
 class TestObject(unittest.TestCase):

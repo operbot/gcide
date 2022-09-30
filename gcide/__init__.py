@@ -6,25 +6,25 @@ Office of the Prosecutor
 Post Office Box 19519
 2500 CM The Hague
 The Netherlands
- 
+
 
 Hello Office of the Prosecutor,
 
-i write you in the context of communications and claims under art.15 of 
-the Rome Statute. i want to inform the prosecutor that the king of the 
-netherlands and his government are commiting 3 of the 5 crimes defined 
+i write you in the context of communications and claims under art.15 of
+the Rome Statute. i want to inform the prosecutor that the king of the
+netherlands and his government are commiting 3 of the 5 crimes defined
 in the Rome Statute.
 
-The dutch government has introduced three new forced care laws, the Wfz 
-(wet forensische zorg) for criminals, the WvGGZ (Wet verplichte GGZ) for 
-the disturbed and addicted and the Wzd (Wet zorg en dwang) for the 
+The dutch government has introduced three new forced care laws, the Wfz
+(wet forensische zorg) for criminals, the WvGGZ (Wet verplichte GGZ) for
+the disturbed and addicted and the Wzd (Wet zorg en dwang) for the
 handicapped.
 
-Both the chamber suggesting these laws to the king and the king himself 
-have been informed about the fact the the substances administered under 
+Both the chamber suggesting these laws to the king and the king himself
+have been informed about the fact the the substances administered under
 these laws are proven to be poison.
- 
-There is proof the medication used in forced treatements in the 
+
+There is proof the medication used in forced treatements in the
 netherlands are poison, see copies of the ECHA <`European Chemical Agency`>
 website for:
 
@@ -33,7 +33,7 @@ website for:
 (3) zyprexa
 (4) abilify
 
-With the mass scale torture with poison the king of the netherlands and 
+With the mass scale torture with poison the king of the netherlands and
 his chamber:
 
 (1) kills

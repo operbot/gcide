@@ -23,7 +23,7 @@ class Command(Object):
         Command.cmd[cmd.__name__] = cmd
 
     @staticmethod
-    def get(cmd):
+    def getcmd(cmd):
         return Command.cmd.get(cmd)
 
     @staticmethod
@@ -33,7 +33,7 @@ class Command(Object):
 
 def dispatch(evt):
     evt.parse()
-    func = Command.get(evt.cmd)
+    func = Command.getcmd(evt.cmd)
     if func:
         func(evt)
         evt.show()
