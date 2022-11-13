@@ -1,16 +1,14 @@
 # This file is placed in the Public Domain.
-# pylint: disable=E1101,C0116,C0413,C0411
 
 
-"command"
+"test commands"
 
 
 import sys
 import unittest
 
 
-from gcide import Client, Command, Object
-from gcide.run import Cfg, docmd
+from gcide import Cfg, Command, Handler, Object, Command, command
 
 
 evts = []
@@ -27,7 +25,9 @@ param.mre = [""]
 param.thr = [""]
 
 
-class CLI(Client):
+class CLI(Handler):
+
+    "test cli class"
 
     @staticmethod
     def raw(txt):
@@ -55,13 +55,15 @@ def consume(events):
 
 class TestCommands(unittest.TestCase):
 
+    "commands test class."
+
     def test_commands(self):
         cmds = sorted(Command.cmd)
         for cmd in cmds:
             if cmd in skip:
                 continue
-            for ex in param.get(cmd, ""):
-                evt = docmd(cli, cmd + " " + ex)
+            for ex in getattr(param, cmd, ""):
+                evt = command(cli, cmd + " " + ex)
                 evts.append(evt)
         consume(evts)
         self.assertTrue(not evts)

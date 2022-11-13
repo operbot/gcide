@@ -1,17 +1,19 @@
-# pylint: disable=E1101,C0116,C0411,R0904
 # This file is placed in the Public Domain.
+# pylint: disable=E1101,C0116,C0411,C2801,R0904,C0015
 
 
 "object"
 
 
+import json
 import os
 import unittest
 
 
-from gcide import Object, loads, dumps
+from gcide import Object, Wd, items, keys, register, update, values
+from gcide import edit, kind, load, save
+from gcide import ObjectDecoder, ObjectEncoder
 from gcide import printable
-from gcide import Wd
 
 
 Wd.workdir = ".test"
@@ -26,13 +28,17 @@ attrs1 = (
          'clear',
          'copy',
          'fromkeys',
+         'get',
          'items',
          'keys',
          'matchkey',
          'pop',
          'popitem',
+         "register",
+         'save',
          'setdefault',
          'update',
+         'values',
         )
 
 attrs2 = (
@@ -43,9 +49,9 @@ attrs2 = (
           '__dir__',
           '__doc__',
           '__eq__',
+          '__fnm__',
           '__format__',
           '__ge__',
-          '__getattr__',
           '__getattribute__',
           '__getitem__',
           '__gt__',
@@ -56,7 +62,6 @@ attrs2 = (
           '__le__',
           '__len__',
           '__lt__',
-          '__methods__',
           '__module__',
           '__ne__',
           '__new__',
@@ -66,19 +71,18 @@ attrs2 = (
           '__setattr__',
           '__setitem__',
           '__sizeof__',
+          '__slots__',
           '__str__',
           '__subclasshook__',
-          '__weakref__',
-          'edit',
-          'get',
-          'items',
-          'keys',
-          'load',
-          'save',
-          'type',
-          'update',
-          'values'
          )
+
+
+def dumps(name):
+    return json.dumps(name, cls=ObjectEncoder)
+
+
+def loads(name):
+    return json.loads(name, cls=ObjectDecoder)
 
 
 class TestObject(unittest.TestCase):
@@ -152,11 +156,12 @@ class TestObject(unittest.TestCase):
     def test_module(self):
         self.assertTrue(Object().__module__, "op")
 
-    def test_type(self):
-        self.assertEqual(Object().type(), "gcide.obj.Object")
+    def test_kind(self):
+        self.assertEqual(kind(Object()), "gcide.obj.Object")
 
     def test_repr(self):
-        self.assertTrue(Object().update({"key": "value"}).__repr__(), {"key": "value"})
+        self.assertTrue(update(Object(),
+                               {"key": "value"}).__repr__(), {"key": "value"})
 
     def test_setattr(self):
         obj = Object()
@@ -173,23 +178,23 @@ class TestObject(unittest.TestCase):
     def test_edit(self):
         obj = Object()
         dta = {"key": "value"}
-        obj.edit(dta)
+        edit(obj, dta)
         self.assertEqual(obj.key, "value")
 
     def test_printable(self):
         obj = Object()
         self.assertEqual(printable(obj), "")
 
-    def test_get(self):
+    def test_getattr(self):
         obj = Object()
         obj.key = "value"
-        self.assertEqual(obj.get("key"), "value")
+        self.assertEqual(getattr(obj, "key"), "value")
 
     def test_keys(self):
         obj = Object()
         obj.key = "value"
         self.assertEqual(
-            list(obj.keys()),
+            list(keys(obj)),
             [
                 "key",
             ],
@@ -199,7 +204,7 @@ class TestObject(unittest.TestCase):
         obj = Object()
         obj.key = "value"
         self.assertEqual(
-            list(obj.items()),
+            list(items(obj)),
             [
                 ("key", "value"),
             ],
@@ -216,32 +221,38 @@ class TestObject(unittest.TestCase):
         obj.test = "bla"
         self.assertEqual(dumps(obj), VALIDJSON)
 
+
     def test_load(self):
         obj = Object()
         obj.key = "value"
-        pld = obj.save()
+        pld = save(obj)
         oobj = Object()
-        oobj.load(pld)
+        load(oobj, pld)
         self.assertEqual(oobj.key, "value")
+
+    def test_register(self):
+        obj = Object()
+        register(obj, "key", "value")
+        self.assertEqual(obj.key, "value")
 
     def test_save(self):
         Wd.workdir = ".test"
         obj = Object()
-        path = obj.save()
+        path = save(obj)
         self.assertTrue(os.path.exists(os.path.join(Wd.workdir, "store", path)))
 
     def test_update(self):
         obj = Object()
         obj.key = "value"
         oobj = Object()
-        oobj.update(obj)
+        update(oobj, obj)
         self.assertTrue(oobj.key, "value")
 
     def test_values(self):
         obj = Object()
         obj.key = "value"
         self.assertEqual(
-            list(obj.values()),
+            list(values(obj)),
             [
                 "value",
             ],

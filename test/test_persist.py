@@ -17,5 +17,5 @@ class TestPersist(unittest.TestCase):
         obj = Object()
         obj.a = "b"
         obj.get = ""
-        self.assertTrue(obj.get("a"), "b")
+        self.assertTrue(getattr(obj, "a"), "b")
         

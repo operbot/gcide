@@ -1,48 +1,41 @@
 # This file is placed in the Public Domain.
 
 
-"bus"
-
-
 import unittest
 
 
-from gcide import Bus, Client
+from gcide import Bus, Handler
 
 
-class MyClient(Client):
+class Client(Handler):
 
-    def __init__(self):
-        Client.__init__(self)
-        self.gotcha = False
-        self.orig = repr(self)
+    gotcha = False
+
+    def announce(self, txt):
+        self.gotcha = True
 
     def raw(self, txt):
         self.gotcha = True
 
 
+clt = Client()
+
+
 class TestBus(unittest.TestCase):
 
+
     def test_add(self):
-        clt = MyClient()
-        Bus.add(clt)
         self.assertTrue(clt in Bus.objs)
 
     def test_announce(self):
-        clt = MyClient()
-        clt.gotcha = False
-        Bus.add(clt)
+        print(Bus.objs)
         Bus.announce("test")
         self.assertTrue(clt.gotcha)
 
     def test_byorig(self):
-        clt = MyClient()
-        Bus.add(clt)
-        self.assertEqual(Bus.byorig(clt.orig), clt)
+        self.assertEqual(Bus.byorig(repr(clt)), clt)
 
     def test_say(self):
-        clt = MyClient()
         clt.gotcha = False
-        Bus.add(clt)
-        Bus.say(clt.orig, "#test", "test")
+        Bus.say(repr(clt), "#test", "test")
         self.assertTrue(clt.gotcha)

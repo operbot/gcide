@@ -1,9 +1,6 @@
 # This file is placed in the Public Domain.
 
 
-"handler"
-
-
 import unittest
 
 
@@ -12,6 +9,6 @@ from gcide import Handler
 
 class TestHandler(unittest.TestCase):
 
-    def testconstructor(self):
+    def test_handler(self):
         hdl = Handler()
         self.assertEqual(type(hdl), Handler)
