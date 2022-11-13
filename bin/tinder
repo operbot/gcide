@@ -16,13 +16,13 @@ import traceback
 import _thread
 
 
-from gcide import Client, Command, Event, Object, Wd
+from gcide import Command, Event, Handler, Object, Wd
 from gcide import launch, parse, scan
 from gcide import elapsed, name, locked
 from gcide.run import Cfg
 
 
-from gcide import cmd, irc, rss
+from gcide import cmds, irc, mdl, rss
 
 
 paylock = _thread.allocate_lock()
@@ -32,8 +32,9 @@ Wd.workdir = ".test"
 Cfg.debug = True
 
 
-scan(cmd)
+scan(cmds)
 scan(irc)
+scan(mdl)
 scan(rss)
 
 
@@ -67,7 +68,7 @@ def cprint(txt):
     sys.stdout.flush()
 
 
-class CLI(Client):
+class CLI(Handler):
 
     def raw(self, txt):
         if Cfg.verbose:
@@ -102,7 +103,7 @@ def payload(clt):
     random.shuffle(cmds)
     _nr = 0
     for cmnd in cmds:
-        for ex in param.get(cmnd, [""]):
+        for ex in getattr(param, cmnd, [""]):
             evt = Event()
             evt.txt = cmnd + " " + ex
             evt.orig = repr(clt)

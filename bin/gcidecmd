@@ -6,33 +6,25 @@
 "command"
 
 
-import os
 import sys
 
 
-from gcide import Client, Wd, parse, scan
-from gcide.run import docmd
-from gcide.irc import Config
+from gcide.obj import Wd
+from gcide.hdl import Event, Handler, parse
+from gcide.run import command, from_exception, scancls, scan
+from gcide import cmds, irc, mdl, rss
 
 
-Config.nick = "gcide"
-Config.channel = "#gcide"
-Config.realname = "Prosecutor. Court. Reconsider OTP-CR-117/19."
-Config.username = "gcide"
+Wd.workdir = "/var/lib/gcide/"
 
 
-Wd.workdir = os.path.exanduser("~/.gcide")
-
-
-from gcide import cmd, irc, rss
-
-
-scan(cmd)
+scan(cmds)
 scan(irc)
+scan(mdl)
 scan(rss)
 
 
-class CLI(Client):
+class CLI(Handler):
 
     @staticmethod
     def raw(txt):
@@ -42,7 +34,7 @@ class CLI(Client):
 def main():
     cfg = parse(" ".join(sys.argv[1:]))
     cli = CLI()
-    docmd(cli, cfg.otxt)
+    command(cli, cfg.otxt)
 
 
 main()

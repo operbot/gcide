@@ -1,13 +1,16 @@
 [Unit]
-Description=GCIDE - Prosecutor. Court. Reconsider OTP-CR-117/19.
+Description=GCIDE - Court. Prosecutor. Reconsider OTP-CR-117/19.
 After=multi-user.target
 
 [Service]
+Type=forking
+KillMode=mixed
+PrivateTmp=true
 DynamicUser=True
 StateDirectory=gcide
 LogsDirectory=gcide
 CacheDirectory=gcide
-ExecStart=/usr/local/bin/gcidesrv
+ExecStart=/usr/local/bin/gcided
 CapabilityBoundingSet=CAP_NET_RAW
 
 [Install]
