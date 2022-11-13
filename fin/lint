@@ -21,6 +21,13 @@ def doskip(txt):
     return False
 
 
+def popen(txt):
+    for line in os.popen(txt).readlines():
+        if doskip(line):
+            continue
+        print(line.rstrip())
+        sys.stdout.flush()
+
 def loop(path, txt):
     for fnn in os.listdir(path):
         if not os.path.isdir(fnn):
@@ -28,13 +35,10 @@ def loop(path, txt):
         if not os.path.exists("%s/__init__.py" % fnn):
             continue
         os.chdir(fnn)
-        for line in os.popen(txt).readlines():
-            if doskip(line):
-                continue
-            print(line.rstrip())
-            sys.stdout.flush()
+        popen(txt)
         os.chdir("..")
 
 
 if __name__ == "__main__":
+    popen("fin/clean")
     loop(os.getcwd(), "pylint --recursive y *")

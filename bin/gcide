@@ -9,9 +9,6 @@
 __version__ = "1"
 
 
-## import
-
-
 import atexit
 import importlib
 import os
@@ -27,17 +24,16 @@ import time
 sys.path.insert(0, os.getcwd())
 
 
-from gcide.hdl import Callback, Command, Event, Handler, parse
+from gcide.hdl import Callback, Command, Event, Handler
+from gcide.hdl import command, parse, scan, scandir
 from gcide.obj import Class, Object, Wd, keys, last, printable, update
 from gcide.obj import find, fntime, items, save, update
-from gcide.run import Cfg, command, scan, scandir, from_exception
+from gcide.run import Cfg, from_exception
 from gcide.utl import elapsed
 
 
 from gcide import cmds, irc, mdl, rss
 
-
-## define
 
 scan(cmds)
 scan(irc)
@@ -45,7 +41,7 @@ scan(mdl)
 scan(rss)
 
 
-Wd.workdir = os.path.expanduser("~/.genocide")
+Wd.workdir = os.path.expanduser("~/.gcide")
 
 
 starttime = time.time()
@@ -102,23 +98,15 @@ class Completer(rlcompleter.Completer):
             return None
 
 
-class Evt(Event):
-
-    def wait(self):
-        Event.wait(self)
-        if self._exc:
-            cprint(from_exception(self._exc))
-
-
 ## utility
 
 
 def banner(cfg):
     cprint(
-          "GENOCIDE started at %s %s" % (
-                                     time.ctime(time.time()).replace("  ", " "),
-                                     printable(cfg, "debug,verbose")
-                                    )
+          "GCIDE started at %s %s" % (
+                                      time.ctime(time.time()).replace("  ", " "),
+                                      printable(cfg, "debug,verbose")
+                                     )
          )
 
 

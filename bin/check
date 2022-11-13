@@ -17,9 +17,6 @@ ALL = [
        "pkgutil",
        "importlib",
        "print",
-       "sys",
-       "inspect",
-       "traceback"
       ]
 
 
@@ -28,8 +25,10 @@ SKIP = [
         "README",
         "grep",
         "bin",
+        "fin",
         "docs",
-        "printable"
+        "printable",
+        "env"
        ]
 
 

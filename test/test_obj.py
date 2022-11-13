@@ -1,5 +1,5 @@
 # This file is placed in the Public Domain.
-# pylint: disable=E1101,C0116,C0411,C2801,R0904,C0015
+# pylint: disable=E1101,C0116,C0411,C2801,R0904,C0115
 
 
 "object"
@@ -10,10 +10,10 @@ import os
 import unittest
 
 
-from gcide import Object, Wd, items, keys, register, update, values
-from gcide import edit, kind, load, save
-from gcide import ObjectDecoder, ObjectEncoder
-from gcide import printable
+from gcide.obj import Object, Wd, items, keys, register, update, values
+from gcide.obj import edit, kind, load, save
+from gcide.obj import ObjectDecoder, ObjectEncoder
+from gcide.obj import printable
 
 
 Wd.workdir = ".test"
