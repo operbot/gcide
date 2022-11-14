@@ -20,36 +20,23 @@
     <br>
 
 
-**gcid**
+**genocide**
 
 .. autosummary::
     :toctree: 
     :template: module.rst
 
-    gcide.cls	classes
-    gcide.dbs	database
-    gcide.dft 	default
-    gcide.obj	object
-    gcide.sel	selector
-    gcide.utl	utility
-    gcide.wdr	workdir
-    gcide.bus 	bus
-    gcide.cbs	callbacks
-    gcide.cfg	config
-    gcide.clt	client
-    gcide.com	commands
-    gcide.evt	event
-    gcide.hdl	handler
-    gcide.prs	parse
-    gcide.scn	scan
-    gcide.thr	thread
-    gcide.tmr	timer/repeater
-    gcide.utl	utility
-    gcide.cmd 	command
+    gcide.cmds	command
+    gcide.fnd	find
+    gcide.hdl 	handler
     gcide.irc	internet relay chat
-    gcide.mdl	genocide model
-    gcide.req	request to the prosecutor
+    gcide.obj	object
+    gcide.mbx	mailbox
+    gcide.req	request
     gcide.rss	rich site syndicate
-    gcide.run	runtime
+    gcide.run 	runtime
     gcide.slg	slogan
+    gcide.thr 	thread
     gcide.udp	udp to irc relay
+    gcide.utl	utility
+    gcide.wsd	wisdom
