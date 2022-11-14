@@ -27,6 +27,9 @@ from .thr import *
 from .utl import *
 
 
+from .hdl import Cfg
+
+
 def __dir__():
     return (
             'Cfg',
@@ -51,8 +54,8 @@ def __dir__():
             'launch',
             'update',
             'values',
-            'write'
+            'write',
            )
 
 
-__all__ = __dir__()
+#__all__ = __dir__()

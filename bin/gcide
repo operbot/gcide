@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # This file is placed in the Public Domain.
-# pylint: disable=R,C,W,C0302
+# pylint: disable=C0115,C0116,C0209,W0221,W0201,E0611
 
 
 "Court. Prosecutor. Reconsider OTP-CR-!17/19."
@@ -17,19 +17,12 @@ import rlcompleter
 import signal
 import sys
 import termios
-import threading
 import time
 
 
-sys.path.insert(0, os.getcwd())
-
-
-from gcide.hdl import Callback, Command, Event, Handler
+from gcide.hdl import Callback, Cfg, Command, Event, Handler
 from gcide.hdl import command, parse, scan, scandir
-from gcide.obj import Class, Object, Wd, keys, last, printable, update
-from gcide.obj import find, fntime, items, save, update
-from gcide.run import Cfg, from_exception
-from gcide.utl import elapsed
+from gcide.obj import Wd, keys, printable, update
 
 
 from gcide import cmds, irc, mdl, rss
@@ -47,29 +40,15 @@ Wd.workdir = os.path.expanduser("~/.gcide")
 starttime = time.time()
 
 
-def cprint(txt):
-    print(txt)
-    sys.stdout.flush()
-
-
-## class
-
-
 class CLI(Handler):
 
-    @staticmethod
-    def announce(txt):
-        CLI.raw(txt)
-
-    @staticmethod
-    def raw(txt):
-        cprint(txt)
+    def raw(self, txt):
+        print(txt)
 
 
 class Console(CLI):
 
-    @staticmethod
-    def handle(event):
+    def handle(self, event):
         Command.handle(event)
         event.wait()
 
@@ -84,8 +63,9 @@ class Completer(rlcompleter.Completer):
 
     def __init__(self, options):
         super().__init__()
+        self.matches = []
         self.options = options
- 
+
     def complete(self, text, state):
         if state == 0:
             if text:
@@ -98,11 +78,8 @@ class Completer(rlcompleter.Completer):
             return None
 
 
-## utility
-
-
 def banner(cfg):
-    cprint(
+    print(
           "GCIDE started at %s %s" % (
                                       time.ctime(time.time()).replace("  ", " "),
                                       printable(cfg, "debug,verbose")
@@ -111,7 +88,6 @@ def banner(cfg):
 
 
 def boot():
-    signal.signal(signal.SIGHUP, hup)
     setcompleter(keys(Command.cmd))
     txt = ' '.join(sys.argv[1:])
     cfg = parse(txt)
@@ -119,9 +95,14 @@ def boot():
     return cfg
 
 
-def hup(_sig, _frame):
-    cprint("signal 15 called")
-    sys.stdout.flush()
+def from_exception(exc, txt="", sep=" "):
+    result = []
+    for frm in traceback.extract_tb(exc.__traceback__):
+        fnm = os.sep.join(frm.filename.split(os.sep)[-2:])
+        result.append(f"{fnm}:{frm.lineno}")
+    nme = name(exc)
+    res = sep.join(result)
+    return f"{txt} {res} {nme}: {exc}"
 
 
 def importer(pname, mname):
@@ -134,13 +115,7 @@ def init(pname, mname):
     modname = "%s.%s" % (pname, mname)
     mod = importlib.import_module(modname, pname)
     if "init" in dir(mod):
-        mod.init()    
-        
-def isopt(ostr):
-    for opt in ostr:
-        if opt in Cfg.opts:
-            return True
-    return False
+        mod.init()
 
 
 def setcompleter(optionlist):
@@ -165,15 +140,12 @@ def wrap(func):
     try:
         func()
     except (EOFError, KeyboardInterrupt):
-        cprint("")
+        print("")
     finally:
         if gotterm:
             termios.tcsetattr(fds, termios.TCSADRAIN, old)
     for err in Callback.errors:
-        cprint(from_exception(err))
-
-
-## runtime
+        print(from_exception(err))
 
 
 def main():
@@ -181,8 +153,8 @@ def main():
     scandir("mod", importer)
     Command.add(ver)
     if cfg.txt:
-        cli = CLI()
-        return command(cli, cfg.txt)
+         cli = CLI()
+         return command(cli, cfg.otxt)
     if Cfg.console:
         banner(cfg)
         scandir("mod", init)
@@ -193,6 +165,7 @@ def main():
         csl = Console()
         csl.start()
         csl.wait()
+    return None
 
 
 wrap(main)

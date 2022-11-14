@@ -16,10 +16,9 @@ import traceback
 import _thread
 
 
-from gcide import Command, Event, Handler, Object, Wd
-from gcide import launch, parse, scan
+from gcide import Cfg, Command, Event, Handler, Object, Wd
+from gcide import launch, parse, scan, update
 from gcide import elapsed, name, locked
-from gcide.run import Cfg
 
 
 from gcide import cmds, irc, mdl, rss
@@ -75,6 +74,13 @@ class CLI(Handler):
             cprint(txt)
 
 
+def boot():
+    txt = ' '.join(sys.argv[1:])
+    cfg = parse(txt)
+    update(Cfg, cfg)
+    return cfg
+
+
 def consume(evt):
     fixed = []
     res = []
@@ -128,12 +134,10 @@ def wrap(func):
 def main():
     if os.path.exists(Cfg.workdir):
         shutil.rmtree(Cfg.workdir)
-    cfg = parse(" ".join(sys.argv[1:]))
-    if "v" in cfg.opts:
-        Cfg.verbose = True
+    cfg = boot()
     cli = CLI()
     cli.start()
-    nrs = cfg.index or 20
+    nrs = cfg.index or 1
     thrs = []
     starttime = time.time()
     for _nr in range(nrs):

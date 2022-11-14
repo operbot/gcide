@@ -347,7 +347,6 @@ def fns(otp, timed=None):
     for rootdir, dirs, _files in os.walk(path, topdown=False):
         if dirs:
             dname = sorted(dirs)[-1]
-            print(dname)
             if dname.count("-") == 2:
                 ddd = os.path.join(rootdir, dname)
                 fls = sorted(os.listdir(ddd))
