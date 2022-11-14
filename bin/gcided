@@ -13,7 +13,7 @@ import time
 
 
 from gcide.obj import Wd
-from gcide.run import scancls
+from gcide.hdl import scancls
 from gcide.irc import Config
 from gcide.utl import wait
 
@@ -21,10 +21,10 @@ from gcide.utl import wait
 from gcide import cmds, irc, mdl, rss
 
 
-Config.channel = "#genocide"
-Config.nick = "genocide"
-Config.realname = "GENOCIDE - Prosecutor. Court. Reconsider OTP-CR-117/19."
-Config.username = "genocide"
+Config.channel = "#gcide"
+Config.nick = "gcide"
+Config.realname = "GCIDE - Court. Prosecutor. Reconsider OTP-CR-117/19."
+Config.username = "gcide"
 
 
 Wd.workdir = "/var/lib/gcide/"

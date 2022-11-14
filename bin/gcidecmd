@@ -11,7 +11,7 @@ import sys
 
 from gcide.obj import Wd
 from gcide.hdl import Event, Handler, parse
-from gcide.run import command, from_exception, scancls, scan
+from gcide.hdl import command, scancls, scan
 from gcide import cmds, irc, mdl, rss
 
 

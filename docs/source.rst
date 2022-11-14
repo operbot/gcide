@@ -34,7 +34,6 @@
     gcide.mbx	mailbox
     gcide.req	request
     gcide.rss	rich site syndicate
-    gcide.run 	runtime
     gcide.slg	slogan
     gcide.thr 	thread
     gcide.udp	udp to irc relay
