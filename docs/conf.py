@@ -1,11 +1,11 @@
-# GENOCIDE OTP-CR-117/19
+# GENOCIDE ICC OTP-CR-117/19
 #
 
 
-"Prosecutor. Court. Reconsider OTP-CR-117/19."
+"ICC. Prosecutor. Reconsider OTP-CR-117/19."
 
 
-__version__ = "1"
+__version__ = "2"
 
 
 import doctest
@@ -56,7 +56,7 @@ extensions=[
 # -- Options for HTML output -------------------------------------------------
 
 
-html_title = "Prosecutor. Court. Reconsider OTP-CR-117/19."
+html_title = "ICC. Prosecutor. Reconsider OTP-CR-117/19."
 html_style = 'gcide.css'
 html_static_path = ["_static"]
 html_css_files = ["gcide.css",]

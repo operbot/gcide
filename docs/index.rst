@@ -7,17 +7,14 @@
 .. title:: OTP-CR-117/19
 
 
-.. image:: skullnr2.jpg
+.. image:: skullagain.jpg
     :width: 100%
     :target: manual.html
 
 
 .. raw:: html
 
-     </center>
-     <br>
-     <center><i>By law, with the use of poison, killing, torturing, castrating, destroying, in whole or in part, all elderly and all handicapped (Wzd), all criminals (Wfz) and all psychiatric patients (WvGGZ) here in the Netherlands.</i></center>
-     <br>
+     <center><i>By law, with the use of poison, killing, torturing, castrating, destroying, in whole or in part, all elderly and all handicapped (Wzd), all criminals (Wfz) and all psychiatric patients (WvGGZ) here in the Netherlands.</i></center><br>
 
 
 In 2018 i informed the king of the netherlands that what he calls medicine in his "care" laws are not medicine but poison. Proof of these medicine being poison were shown to the king, who's (personal) kabinet wrote back that "the king took note of what i have written".
@@ -29,11 +26,11 @@ I :ref:`wrote <writings>` the prosecutor asking for an arrest of the king (make 
 
 .. raw:: html
 
-    <br>
-    <center>
-    <b>
+     <br>
+     <center>
+     <b>
 
-Prosecutor. Court. :ref:`Reconsider OTP-CR-117/19. <reconsider>`
+ICC.  Prosecutor. Reconsider :ref:`OTP-CR-117/19 <reconsider>`.
 
 .. raw:: html
 

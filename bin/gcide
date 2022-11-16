@@ -3,7 +3,7 @@
 # pylint: disable=C0115,C0116,C0209,W0221,W0201,E0611
 
 
-"Court. Prosecutor. Reconsider OTP-CR-!17/19."
+"ICC. Prosecutor. Reconsider OTP-CR-!17/19."
 
 
 __version__ = "1"

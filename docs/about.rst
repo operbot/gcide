@@ -41,7 +41,7 @@ I :ref:`wrote <writings>` the prosecutor asking for an arrest of the king (make 
     <center>
     <b>
 
-Prosecutor. Court. :ref:`Reconsider OTP-CR-117/19. <reconsider>`
+ICC. Prosecutor. Reconsider:ref:` OTP-CR-117/19 <reconsider>`.
 
 .. raw:: html
 

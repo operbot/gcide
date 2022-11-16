@@ -22,7 +22,7 @@
 
 **NAME**
 
- **GENOCIDE** - Prosecutor. Court. Reconsider OTP-CR-117/19.
+ **GENOCIDE** - ICC. Prosecutor. Reconsider OTP-CR-117/19.
 
 
 **SYNOPSIS**

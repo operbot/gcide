@@ -32,7 +32,7 @@ setup(
     url='https://github.com/bthate/gcide',
     author='Bart Thate',
     author_email='operbot100@gmail.com', 
-    description="Prosecutor. Court. Reconsider OTP-CR-117/19.",
+    description="ICC. Prosecutor. Reconsider OTP-CR-117/19.",
     long_description=read(),
     license='Public Domain',
     packages=["gcide"],

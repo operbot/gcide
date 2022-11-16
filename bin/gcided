@@ -3,7 +3,7 @@
 # This file is placed in the Public Domain.
 
 
-"Court. Prosecutor. Reconsider OTP-CR-117/19."
+"ICC. Prosecutor. Reconsider OTP-CR-117/19."
 
 
 import os
@@ -23,7 +23,7 @@ from gcide import cmds, irc, mdl, rss
 
 Config.channel = "#gcide"
 Config.nick = "gcide"
-Config.realname = "GCIDE - Court. Prosecutor. Reconsider OTP-CR-117/19."
+Config.realname = "GCIDE - ICC. Prosecutor. Reconsider OTP-CR-117/19."
 Config.username = "gcide"
 
 
