@@ -1,0 +1,22 @@
+#!/usr/bin/env python3
+# This file is placed in the Public Domain.
+
+
+"clean"
+
+
+import os
+
+
+def popen(txt, silent=False):
+    for line in os.popen(txt).readlines():
+        if silent:
+            continue
+        print(line.strip())
+
+
+popen("rm -fRv build dist MANIFEST *.egg-info")
+popen("rm -f *~")
+popen("rm -fR .test .op html")
+popen("rm -fR docs/gcide*.rst")
+
