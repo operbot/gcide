@@ -20,6 +20,9 @@ import termios
 import time
 
 
+sys.path.insert(0, os.getcwd())
+
+
 from gcide.hdl import Callback, Cfg, Command, Event, Handler
 from gcide.hdl import command, parse, scan, scandir
 from gcide.obj import Wd, keys, printable, update

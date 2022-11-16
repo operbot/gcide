@@ -8,8 +8,8 @@
 import unittest
 
 
-from gcide import Command, Event, Handler, Object
-from gcide.run import Cfg
+from gcide import Cfg, Command, Event, Handler, Object
+
 
 events = []
 skip = ["cfg",]

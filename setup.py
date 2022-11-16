@@ -34,6 +34,7 @@ setup(
     author_email='operbot100@gmail.com', 
     description="ICC. Prosecutor. Reconsider OTP-CR-117/19.",
     long_description=read(),
+    long_description_content_type='text/x-rst',
     license='Public Domain',
     packages=["gcide"],
     zip_safe=True,
