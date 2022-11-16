@@ -6,6 +6,9 @@
 "ICC. Prosecutor. Reconsider OT-CR-117/19"
 
 
+__version__ = "2"
+
+
 import sys
 
 
@@ -31,7 +34,12 @@ class CLI(Handler):
         print(txt)
 
 
+def ver(event):
+    event.reply("GCIDE %s" % __version__)
+
+
 def main():
+    Command.add(ver)
     cfg = parse(" ".join(sys.argv[1:]))
     cli = CLI()
     command(cli, cfg.otxt)

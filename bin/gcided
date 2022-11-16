@@ -6,6 +6,9 @@
 "ICC. Prosecutor. Reconsider OTP-CR-117/19."
 
 
+__version__ = "2"
+
+
 import os
 import signal
 import sys
@@ -23,7 +26,7 @@ from gcide import cmds, irc, mdl, rss
 
 Config.channel = "#gcide"
 Config.nick = "gcide"
-Config.realname = "GCIDE - ICC. Prosecutor. Reconsider OTP-CR-117/19."
+Config.realname = "ICC. Prosecutor. Reconsider OTP-CR-117/19."
 Config.username = "gcide"
 
 
@@ -50,7 +53,12 @@ def daemon():
     os.dup2(ses.fileno(), sys.stderr.fileno())
 
 
+def ver(event):
+    event.reply("GCIDE %s" % __version__)
+
+
 def main():
+    Command.add(ver)
     daemon()
     irc.init()
     rss.init()
