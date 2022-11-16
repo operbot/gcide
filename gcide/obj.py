@@ -309,7 +309,7 @@ class Db:
         res = []
         for fnm in fns(otp, timed):
             obj = hook(fnm)
-            if deleted and obj.__deleted__:
+            if deleted and "__deleted__" in obj and obj.__deleted__:
                 continue
             if selector and not search(obj, selector):
                 continue
